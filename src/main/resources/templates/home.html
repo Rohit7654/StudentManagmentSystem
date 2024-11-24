@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head >
+    <title>home Page</title>
+    <link rel="stylesheet" data-th-href="@{./css/output.css}">
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+</head>
+<body>
+<div id="content">
+        
+        <h1>Jai Shree Ram</h1>
+        <h2>Student Information</h2>
+        <ul>
+            <li>Name: Jai Shree Ram</li>
+            <li>Age: 25</li>
+            <li>Address: Sri Lanka</li>
+        </ul>
+</div>
+    <script>
+        console.log("Home Page");
+    </script>
+</body>
+</html>
