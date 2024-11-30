@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <title>Update Student</title>
+    <link rel="stylesheet" data-th-href="@{./css/output.css}">
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+</head>
+
+<body>
+    <div id="content">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <form data-th-action="@{'/search'}" data-th-object="${StudentSearchForm}">
+                <div
+                    class="flex space-x-3 p-5 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4">
+                    <!-- select box   -->
+                    <div>
+                        <select id="countries_disabled" data-th-field="*{SearchField}"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected value="">Select Field</option>
+                            <option value="name">Name</option>
+                            <option value="phone">Phone</option>
+                            <option value="email">Email</option>
+                        </select>
+                    </div>
+                    <label for="table-StudentList" class="sr-only">Search</label>
+                    <div class="relative">
+
+                        <input type="text" id="table-StudentList-users" data-th-field="*{SearchValue}"
+                            class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Search for users" />
+                    </div>
+                    <button type="submit" class="px-3 py-2 bg-gray-800 text-white rounded">
+                        Search
+                    </button>
+                </div>
+            </form>
+            <!-- <div>
+                <button type="button" onclick="exportData()" class="px-3 py-2 bg-green-800 text-white rounded">
+                    Export
+                </button>
+            </div> -->
+        </div>
+        <table data-th-if="${PageStudent.totalElements>0}"
+            class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Father Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Mother Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Phone Number
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Address
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-th-object="${c}" data-th-each="c  : ${PageStudent.getContent()}"
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th data-th-text="*{name}" scope="row"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Rohit Rawat
+                    </th>
+                    <td data-th-text="*{fatherName}" class="px-6 py-4">
+                        Rajkumar Sah
+                    </td>
+                    <td data-th-text="*{motherName}" class="px-6 py-4">
+                        Anju Devi
+                    </td>
+                    <td data-th-text="*{phoneNumber}" class="px-6 py-4">
+                        9874563210
+                    </td>
+                    <td data-th-text="*{email}" class="px-6 py-4">
+                        rohitkumar@gmail.com
+                    </td>
+                    <td data-th-text="*{address}" class="px-6 py-4">
+                        Muzaffarpur Bihar
+                    </td>
+                    <td class="px-6 py-4">
+                        <a data-th-href="@{'/update-view/'+*{studentID}}">
+                            <button type="button"
+                                class="text-white w-20 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Edit</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- pagination component  -->
+        <div data-th-if="${PageStudent.totalElements>0}"
+            class="pagination_container bg-white dark:bg-gray-800 p-5 text-center">
+            <nav aria-label="Page navigation example">
+                <ul class="inline-flex -space-x-px text-base h-10">
+                    <li data-th-unless="${PageStudent.first}">
+                        <a data-th-href="@{'/StudentList?size='+${pageSize}+'&page=' + ${PageStudent.number-1}}"
+                            href="#"
+                            class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                    </li>
+                    <li data-th-each="index :  ${#numbers.sequence(0,PageStudent.totalPages-1)}">
+                        <a data-th-href="@{'/StudentList?size='+${pageSize}+'&page='+${index}}"
+                            data-th-classappend="${index==PageStudent.number? 'bg-blue-50  dark:bg-gray-600' : 'bg-white dark:bg-gray-800'}"
+                            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <span data-th-text="${index+1}"></span>
+                        </a>
+                    </li>
+                    <li data-th-unless="${PageStudent.last}">
+                        <a data-th-href="@{'/StudentList?size='+${pageSize}+'&page=' + ${PageStudent.number+1}}"
+                            href="#"
+                            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <h1 class="text-5xl text-center dark:bg-gray-800 dark:text-white bg-white p-4"
+            data-th-if="${PageStudent.totalElements<=0}">
+            No result found
+        </h1>
+    </div>
+    <script>
+        console.log("Update Student page");
+    </script>
+</body>
+
+</html>

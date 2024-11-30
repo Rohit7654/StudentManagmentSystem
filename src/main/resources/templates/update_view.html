@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student Page</title>
+</head>
+
+<body>
+    <div id="content">
+
+        <div class="grid grid-cols-12 mt-5">
+            <div class="col-span-2 md:col-span-2 lg:col-span-4 xl:col-span-4"></div>
+            <div class="col-span-6 md:col-span-6 lg:col-span-4 xl:col-span-4">
+
+                <div
+                    class="block  p-6 bg-white border-t-[10px] border-blue-700 rounded-xl shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-blue-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Add Student</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">Start Managing Student on Cloud ......</p>
+                    <div class="pt-3" data-th-replace="~{message::messagebox}"></div>
+
+                    <form class="max-w-md mx-auto mt-5" data-th-action="@{'/updateStudent/'+${studentID}}" method="POST"  data-th-object="${studentForm}" novalidate>
+                        <div class="relative z-0 w-full mb-5 group">
+                            <input  type="text" data-th-field="*{name}"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " required />
+                                <p data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}"
+                                class="px-1 text-red-600 text-sm"></p>
+                            <label for="name"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
+                        </div>
+                        <div class="grid md:grid-cols-2 md:gap-6">
+                            <div class="relative z-0 w-full mb-5 group">
+                                <input type="text"   data-th-field="*{fatherName}"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " required />
+                                    <p data-th-if="${#fields.hasErrors('fatherName')}" data-th-errors="*{fatherName}"
+                                    class="px-1 text-red-600 text-sm"></p>
+                                <label for="fatherName"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Father
+                                    name</label>
+                            </div>
+                            <div class="relative z-0 w-full mb-5 group">
+                                <input type="text"  data-th-field="*{motherName}"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " required />
+                                    <p data-th-if="${#fields.hasErrors('motherName')}" data-th-errors="*{motherName}"
+                                    class="px-1 text-red-600 text-sm"></p>
+                                <label for="motherName"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Mother
+                                    name</label>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 md:gap-6">
+                            <div class="relative z-0 w-full mb-5 group">
+                                <input type="number" data-th-field="*{phoneNumber}"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " required />
+                                    <p data-th-if="${#fields.hasErrors('phoneNumber')}" data-th-errors="*{phoneNumber}"
+                                    class="px-1 text-red-600 text-sm"></p>
+                                <label for="phoneNumber"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone
+                                    number (984563210)</label>
+                            </div>
+                            <div class="relative z-0 w-full mb-5 group">
+                                <input type="text"  data-th-field="*{email}"
+                                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    placeholder=" " required />
+                                    <p data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"
+                                    class="px-1 text-red-600 text-sm"></p>
+                                <label for="email"
+                                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email
+                                    (Ex. acd@gmail.com)</label>
+                            </div>
+                        </div>
+                        <div class="relative z-0 w-full mb-5 group">
+                            <label for="address"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                            <textarea id="address" data-th-field="*{address}" name="address" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your Address here..."></textarea>
+                            <p data-th-if="${#fields.hasErrors('address')}" data-th-errors="*{address}"
+                                class="px-1 text-red-600 text-sm"></p>
+                        </div>
+                        <button type="submit"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        console.log("this is Update Student  page");
+    </script>
+</body>
+
+</html>
